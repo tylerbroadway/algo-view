@@ -1,0 +1,54 @@
+* {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1em;
+}
+
+.visualizer-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.bars-container {
+  align-items: center;
+  display: flex;
+  margin-top: auto;
+}
+
+.bar {
+  background-color: blueviolet;
+  border-radius: 0.5em;
+  margin: 0.15%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  background-color: #333;
+  margin-top: auto;
+}
+
+.button {
+  border-radius: 0.4em;
+  border-width: 0.05em;
+  color: white;
+  padding: 0.5em;
+  margin: 0 0.5em;
+  background-color: transparent;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:hover {
+  color: #333;
+  background-color: #eaeaea;
+}
+
+@media (min-width: 700px) {
+  .app-footer {
+    justify-content: center;
+  }
+}
