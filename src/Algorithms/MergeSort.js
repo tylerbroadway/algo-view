@@ -1,27 +1,26 @@
-export const getMergeSortAnimations = (nums) => {
-  const copy = [...nums];
-  const aux = Array(copy.length);
+export const getMergeSortAnimations = (arr) => {
+  const copy = [...arr];
+  const len = copy.length;
+  const aux = Array(len);
   const animations = [];
-  mergeSortHelper(copy, aux, copy.length - 1, animations);
+  mergeSortHelper(copy, aux, 0, len - 1, animations);
   return animations;
 };
 
 const mergeSortHelper = (arr, aux, left, right, animations) => {
   if (right <= left) return;
-  const midPoint = left + Math.floor((right - left) / 2);
-  mergeSortHelper(arr, aux, left, midPoint, animations);
-  mergeSortHelper(arr, aux, midPoint + 1, right, animations);
-  merge(arr, aux, left, midPoint, right, animations);
+  const mid = left + Math.floor((right - left) / 2);
+  mergeSortHelper(arr, aux, left, mid, animations);
+  mergeSortHelper(arr, aux, mid + 1, right, animations);
+  merge(arr, aux, left, mid, right, animations);
 };
 
-const merge = (arr, aux, left, midPoint, right, animations) => {
-  for (let i = left; i <= right; i++) {
-    aux[i] = arr[i];
-  }
+const merge = (arr, aux, left, mid, right, animations) => {
+  for (let i = left; i <= right; i++) aux[i] = arr[i];
   let i = left;
-  let j = midPoint + 1;
+  let j = mid + 1;
   for (let k = left; k <= right; k++) {
-    if (i > midPoint) {
+    if (i > mid) {
       animations.push([[j], false]);
       animations.push([[k, aux[j]], true]);
       arr[k] = aux[j++];
