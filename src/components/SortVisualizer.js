@@ -49,6 +49,7 @@ const SortVisualizer = () => {
     setNums(nums);
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => generateNums, []);
 
   const animateNumAccess = (idx) => {
