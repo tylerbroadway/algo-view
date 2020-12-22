@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import SortVisualizer from "./components/SortVisualizer";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Hello, World</h1>
     </div>
   );
 }
 
 export default App;
+
+//SORTING VISUALIZER
+
+//*ALGOS TO VISUALIZE*:
+//QUICK SORT
+//MERGE SORT
+//BUBBLE SORT
+//INSERTION SORT
+//SELECTION SORT
+
+//*IMPLEMENTATION*:
+//HAVE AN ARRAY OF NUMBERS
+//HEIGHT OF EACH BAR IN THE GRAPH CORRELATES TO THE VALUE AT THAT INDEX IN THE ARRAY
+//RENDER A DIV FOR EACH ITEM IN THE ARRAY, AND USE FLEXBOX TO ALIGN THEM
+
+//*LOGIC*:
+//EACH ALGORITHM IS STORED IN A FUNCTION
+//USING A SWITCH STATEMENT BASED ON A DROPDOWN LIST, A DESIRED ALGORITHM FUNCTION IS CALLED
