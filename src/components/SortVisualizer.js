@@ -122,7 +122,8 @@ const SortVisualizer = () => {
   };
 
   return (
-    <>
+    <div>
+      <h1 id="site-title">Algo View</h1>
       <div className="visualizer-container">
         <div className="bars-container" ref={containerRef}>
           {list.map((barHeight, idx) => (
@@ -138,7 +139,7 @@ const SortVisualizer = () => {
         </div>
         <div className="button-container">
           <button className="button" onClick={generateList}>
-            Unsort
+            Generate New List
           </button>
           <button className="button" onClick={mergeSort}>
             Merge Sort
@@ -151,7 +152,7 @@ const SortVisualizer = () => {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
