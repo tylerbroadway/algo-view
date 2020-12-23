@@ -12,14 +12,14 @@ const ACTIVE_COLOR = "turqoise";
 const SORTED_COLOR = "green";
 
 const SortVisualizer = () => {
-  const [nums, setNums] = useState([]);
+  const [list, setList] = useState([]);
   const [isSorting, setIsSorting] = useState(false);
   const [isSorted, setIsSorted] = useState(false);
   const containerRef = useRef(null);
 
   const resetColors = () => {
     const bars = containerRef.current.children;
-    for (let i = 0; i < nums.length; i++) {
+    for (let i = 0; i < list.length; i++) {
       const barStyle = bars[i].style;
       barStyle.backgroundColor = "";
     }
@@ -34,7 +34,7 @@ const SortVisualizer = () => {
     }
   };
 
-  const generateNums = () => {
+  const generateList = () => {
     if (isSorting) {
       return;
     } else if (isSorted) {
@@ -46,11 +46,11 @@ const SortVisualizer = () => {
       nums.push((MAX - MIN) * (i / LENGTH) + MIN);
     }
     randomize(nums);
-    setNums(nums);
+    setList(nums);
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => generateNums, []);
+  useEffect(() => generateList, []);
 
   const animateNumAccess = (idx) => {
     const bars = containerRef.current.children;
@@ -63,7 +63,7 @@ const SortVisualizer = () => {
     }, DELAY * 2);
   };
 
-  const animateSortedNums = () => {
+  const animateSortedList = () => {
     const bars = containerRef.current.children;
     for (let i = 0; i < bars.length; i++) {
       const barStyle = bars[i].style;
@@ -77,7 +77,7 @@ const SortVisualizer = () => {
     }, (bars.length * DELAY) / 2);
   };
 
-  const animateNumsUpdate = (animations) => {
+  const animateListUpdate = (animations) => {
     if (isSorting) return;
     setIsSorting(true);
     animations.forEach(([comparison, swapped], idx) => {
@@ -92,7 +92,7 @@ const SortVisualizer = () => {
             animateNumAccess(i);
           }
         } else {
-          setNums((prevNums) => {
+          setList((prevNums) => {
             const [k, newVal] = comparison;
             const newNums = [...prevNums];
             newNums[k] = newVal;
@@ -102,54 +102,56 @@ const SortVisualizer = () => {
       }, idx * DELAY);
     });
     setTimeout(() => {
-      animateSortedNums();
+      animateSortedList();
     }, animations.length * DELAY);
   };
 
   const mergeSort = () => {
-    const animations = getMergeSortAnimations(nums);
-    animateNumsUpdate(animations);
+    const animations = getMergeSortAnimations(list);
+    animateListUpdate(animations);
   };
 
   const insertionSort = () => {
-    const animations = getInsertionSortAnimations(nums);
-    animateNumsUpdate(animations);
+    const animations = getInsertionSortAnimations(list);
+    animateListUpdate(animations);
   };
 
   const quickSort = () => {
-    const animations = getQuickSortAnimations(nums);
-    animateNumsUpdate(animations);
+    const animations = getQuickSortAnimations(list);
+    animateListUpdate(animations);
   };
 
   return (
-    <div className="visualizer-container">
-      <div className="bars-container" ref={containerRef}>
-        {nums.map((barHeight, idx) => (
-          <div
-            className="bar"
-            style={{
-              height: `${barHeight}vmin`,
-              width: `${100 / LENGTH}vw`,
-            }}
-            key={idx}
-          />
-        ))}
+    <>
+      <div className="visualizer-container">
+        <div className="bars-container" ref={containerRef}>
+          {list.map((barHeight, idx) => (
+            <div
+              className="bar"
+              style={{
+                height: `${barHeight}vmin`,
+                width: `${100 / LENGTH}vw`,
+              }}
+              key={idx}
+            />
+          ))}
+        </div>
+        <div className="button-container">
+          <button className="button" onClick={generateList}>
+            Unsort
+          </button>
+          <button className="button" onClick={mergeSort}>
+            Merge Sort
+          </button>
+          <button className="button" onClick={insertionSort}>
+            Insertion Sort
+          </button>
+          <button className="button" onClick={quickSort}>
+            Quick Sort
+          </button>
+        </div>
       </div>
-      <div className="button-container">
-        <button className="button" onClick={generateNums}>
-          Create New List
-        </button>
-        <button className="button" onClick={mergeSort}>
-          Merge Sort
-        </button>
-        <button className="button" onClick={insertionSort}>
-          Insertion Sort
-        </button>
-        <button className="button" onClick={quickSort}>
-          Quick Sort
-        </button>
-      </div>
-    </div>
+    </>
   );
 };
 
