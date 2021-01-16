@@ -123,7 +123,7 @@ const SortVisualizer = () => {
 
   return (
     <div>
-      <h1 id="site-title">Algo View</h1>
+      <h1 id="site-title">AlgoView</h1>
       <div className="visualizer-container">
         <div className="bars-container" ref={containerRef}>
           {list.map((barHeight, idx) => (
